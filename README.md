@@ -37,7 +37,6 @@ Aplikasi ini dapat dapat diakses di tautan berikut
 ## Bagan Alur Request dan Response pada Django 🌐
 
 Berikut ini adalah alur request client ke web aplikasi berbasis Django beserta responnya:
-![Bagan](images\Assignment_1_Diagram_PBP.png)
 ![Assignment_1_Diagram_PBP](https://github.com/user-attachments/assets/016725f5-68af-4970-bf6e-07fb564e1066)
 **Alur Request Client**
 
