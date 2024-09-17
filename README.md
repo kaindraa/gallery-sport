@@ -37,7 +37,7 @@ Aplikasi ini dapat dapat diakses di tautan berikut
 ## Bagan Alur Request dan Response pada Django 🌐
 
 Berikut ini adalah alur request client ke web aplikasi berbasis Django beserta responnya:
-![Bagan](https://cdn.discordapp.com/attachments/1283278498596655205/1283278582788919357/Screenshot_2024-09-11_110719.png?ex=66e269d0&is=66e11850&hm=22ebbaa2f34fbd02b1fc8a741071a77a2226e7e8788613f07d331b827cda6181&)
+![Bagan](images\Assignment_1_Diagram_PBP.png)
 
 - **Client Request**: Klien mengirimkan request melalui browser ke server.
 - **URLs.py**: Request diarahkan oleh `urls.py` ke fungsi di `views.py` yang sesuai.
