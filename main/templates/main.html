@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <h1>Gallery Sport</h1>
 
 <h5>Name: </h5>
@@ -10,3 +13,33 @@
 <p>{{ quantity }}<p>
 <h5>discount: </h5>
 <p>{{ discount }}<p>
+
+{% if not products %}
+<p>Belum ada data produk pada e-commerce.</p>
+{% else %}
+<table>
+    <thead>
+    <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for product in products %}
+        <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.description }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+<br />
+
+<a href="{% url 'main:create_product_entry' %}">
+<button>Add New Product</button>
+</a>
+{% endblock content %}
