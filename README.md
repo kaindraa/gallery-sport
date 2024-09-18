@@ -7,55 +7,25 @@ Aplikasi web e-commerce berbasis Django bernama Gallery Sport ini menjual berbag
 Aplikasi ini dapat dapat diakses di tautan berikut 
 [[Link Aplikasi](http://kaindra-rizq-gallerysport.pbp.cs.ui.ac.id/)]
 
-## Langkah Implementasi 🛠
+## Menjawab Pertanyaan-Pertanyaan 📋
 
-1. **Membuat proyek Django baru**
-   - Inisialisasi proyek dengan perintah `django-admin startproject [nama_proyek]` untuk membuat struktur direktori dasar.
+### 1. Mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 
-2. **Membuat aplikasi dengan nama "main" pada proyek**
-   - Tambahkan aplikasi dengan perintah `python manage.py startapp main` yang akan berisi semua logika aplikasi.
+Data delivery penting dalam pengimplementasian platform karena memungkinkan data untuk berpindah dari satu titik ke titik lain (server ke klien atau antar layanan). Dengan data delivery yang baik, platform dapat memberikan respons yang cepat dan efisien kepada pengguna, menjaga integritas data, dan memastikan bahwa informasi dapat diakses secara real-time. Ini juga penting dalam skalabilitas dan interoperabilitas sistem, terutama jika platform melibatkan banyak komponen atau microservices.
 
-3. **Routing proyek ke aplikasi "main"**
-   - Di `urls.py` proyek, tambahkan route yang mengarahkan request ke aplikasi "main".
+### 2. Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
 
-4. **Membuat model Product**
-   - Di `models.py` aplikasi "main", buat model `Product` dengan atribut `name`, `description`, `price`, `quantity`, dan `discount`.
+JSON lebih baik dalam konteks web modern karena lebih ringan, lebih mudah dibaca oleh manusia, dan lebih cepat diproses oleh mesin. JSON juga lebih mudah digunakan dalam bahasa pemrograman seperti JavaScript, yang menjadi salah satu alasan popularitasnya. Sementara XML memiliki struktur yang lebih kompleks dan mendukung skema formal yang lebih baik, JSON lebih efisien untuk pengiriman data dalam aplikasi web dan API karena formatnya yang lebih sederhana dan kompak.
 
-5. **Membuat fungsi di views.py**
-   - Buat fungsi di `views.py` yang merender template HTML berisi nama aplikasi, nama, dan kelas.
+### 3. Jelaskan fungsi dari method `is_valid()` pada form Django dan mengapa kita membutuhkan method tersebut?
 
-6. **Routing di urls.py aplikasi "main"**
-   - Tambahkan route di `urls.py` aplikasi "main" untuk memetakan URL ke fungsi di `views.py`.
+Method `is_valid()` pada form Django digunakan untuk memvalidasi data yang dikirimkan melalui form. Method ini akan mengecek apakah data yang dimasukkan sesuai dengan aturan validasi yang telah ditentukan (misalnya, format email yang benar atau angka yang berada dalam rentang tertentu). Jika data valid, method ini akan mengembalikan `True`, dan memungkinkan data untuk diproses lebih lanjut, misalnya disimpan ke database. Jika data tidak valid, method ini mengembalikan `False` dan memungkinkan form menampilkan pesan error kepada pengguna.
 
-7. **Deployment ke PWS**
-   - Upload proyek ke PWS agar dapat diakses online.
+### 4. Mengapa kita membutuhkan `csrf_token` saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan `csrf_token` pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
 
-8. **Membuat README.md**
-   - Buat README.md berisi deskripsi proyek, langkah-langkah implementasi, dan tautan aplikasi yang di-deploy.
+`csrf_token` diperlukan untuk melindungi aplikasi Django dari serangan CSRF (Cross-Site Request Forgery). CSRF adalah serangan di mana penyerang mencoba memanipulasi tindakan yang dilakukan oleh pengguna di aplikasi tanpa sepengetahuan mereka. Jika tidak ada `csrf_token`, penyerang dapat membuat pengguna mengirimkan request berbahaya yang tampak sah (misalnya, transfer uang atau pengubahan pengaturan akun). Dengan `csrf_token`, setiap form memiliki token unik yang harus cocok dengan token yang disimpan di server, sehingga memitigasi risiko serangan ini.
 
+### 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)?
 
-## Bagan Alur Request dan Response pada Django 🌐
-
-Berikut ini adalah alur request client ke web aplikasi berbasis Django beserta responnya:
-![Assignment_1_Diagram_PBP](https://github.com/user-attachments/assets/016725f5-68af-4970-bf6e-07fb564e1066)
-**Alur Request Client**
-
-
-- **Client Request**: Klien mengirimkan request melalui browser ke server.
-- **URLs.py**: Request diarahkan oleh `urls.py` ke fungsi di `views.py` yang sesuai.
-- **Views.py**: `Views.py` menjalankan logika aplikasi dan berinteraksi dengan `models.py` jika diperlukan.
-- **Models.py**: `Models.py` digunakan untuk mengambil atau menyimpan data di database.
-- **HTML Response**: Setelah data diperoleh, `views.py` merender template HTML yang sesuai dari folder templates dan mengirimnya kembali sebagai respons ke klien.
-
-## Fungsi Git dalam Pengembangan Perangkat Lunak 👨‍💻
-
-Git adalah sistem kontrol versi yang digunakan untuk melacak perubahan kode, memungkinkan pengembang mengakses dan memulihkan versi sebelumnya. Ini memfasilitasi kolaborasi tim dengan membiarkan setiap orang bekerja pada salinan proyek mereka sendiri, yang dapat digabungkan dengan aman ke repositori utama. Git juga mendukung branching, memungkinkan pengembang mengerjakan fitur atau perbaikan secara terpisah tanpa mengganggu kode utama. Dengan repositori remote, Git memberikan backup terpusat yang aman, serta mendukung code review melalui pull request dan memfasilitasi integrasi berkelanjutan (CI/CD) untuk otomatisasi pengujian dan deployment.
-
-## Mengapa framework Django dijadikan permulaan pembelajaran pengembangan perangkat lunak? 🧐
-
-Django dipilih sebagai framework permulaan pembelajaran pengembangan perangkat lunak karena mendukung pengembangan cepat (rapid development) dan menerapkan praktik terbaik seperti arsitektur Model-View-Template (MVT). Kesederhanaannya memungkinkan pemula untuk memahami konsep dasar seperti routing, templating, dan pengelolaan database tanpa terjebak dalam kode yang kompleks. Selain itu, dokumentasinya yang lengkap dan komunitas yang luas memudahkan pemula untuk menemukan sumber belajar dan solusi atas masalah yang dihadapi.
-
-## Mengapa model pada Django disebut sebagai ORM? 🤖
-
-Model pada Django disebut sebagai ORM (Object-Relational Mapping) karena berfungsi sebagai jembatan antara objek dalam kode Python dan tabel dalam database relasional. ORM memungkinkan pengembang untuk bekerja dengan database menggunakan objek Python tanpa perlu menulis query SQL secara langsung. Dengan ORM, setiap model dalam Django direpresentasikan sebagai kelas Python, di mana atribut kelas mewakili kolom tabel database. Ini memudahkan pengembang untuk berinteraksi dengan database melalui operasi seperti menyimpan, mengambil, memperbarui, dan menghapus data menggunakan sintaks Python yang sederhana.
+Untuk memenuhi checklist, aku membuat empat fungsi views: `show_xml`, `show_json`, `show_xml_by_id`, dan `show_json_by_id` untuk menampilkan data produk dalam format XML dan JSON, baik untuk semua produk maupun berdasarkan ID. Data diambil menggunakan query ke database dan dikonversi dengan `serializers` dari Django. aku kemudian menambahkan routing di `urls.py` untuk setiap view tersebut dengan path yang sesuai, seperti `/xml/`, `/json/`, dan versi dengan ID untuk menampilkan produk tertentu. Setelah itu, aku menguji setiap view melalui browser untuk memastikan data ditampilkan dengan benar dalam format yang diminta.
 
