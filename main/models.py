@@ -2,7 +2,7 @@ from django.db import models
 import uuid  # tambahkan baris ini di paling atas
 from django.contrib.auth.models import User
 
-
+#Try webhook
 class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
