@@ -17,7 +17,9 @@ from django.urls import reverse
 
 @login_required(login_url='/login')
 def show_main(request):
-    products = Product.objects.all()
+    # products = Product.objects.all()
+    products = Product.objects.filter(user=request.user)
+
     context = {
         'name': request.user.username,
         'price': 150000,
@@ -25,7 +27,7 @@ def show_main(request):
         'quantity': 10,
         'discount': 0.0,
         'products': products,
-        'last_login': request.COOKIES['last_login'],
+        'last_login': request.COOKIES.get('last_login', 'Empty')
 
 
     }
@@ -34,15 +36,20 @@ def show_main(request):
 
 
 def create_product_entry(request):
+    print(1)
     form = ProductForm(request.POST or None)
     if form.is_valid() and request.method == "POST":
+        print(2)
+
         product_entry = form.save(commit=False)
         product_entry.user = request.user
         product_entry.save()
         return redirect('main:show_main')
+    else:
+        print(3)  
 
     context = {'form': form}
-    return render(request, "create_mood_entry.html", context)
+    return render(request, "create_product_entry.html", context)
 
 
 def show_xml(request):
