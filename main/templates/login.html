@@ -1,32 +1,50 @@
 {% extends 'base.html' %}
 
 {% block meta %}
-<title>Login</title>
+<title>Masuk</title>
 {% endblock meta %}
 
 {% block content %}
-<div class="login">
-  <h1>Login</h1>
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="container max-w-md p-8 bg-white rounded-lg shadow-md">
+    <div class="flex justify-end">
+      <button class="close-btn text-gray-500 text-2xl">&times;</button>
+    </div>
 
-  <form method="POST" action="">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-      <tr>
-        <td></td>
-        <td><input class="btn login_btn" type="submit" value="Login" /></td>
-      </tr>
-    </table>
-  </form>
+    <h2 class="text-2xl font-bold mb-6 text-center text-black">Masuk</h2>
 
-  {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %} Don't have an account yet?
-  <a href="{% url 'main:register' %}">Register Now</a>
+    <form method="POST" action="">
+      {% csrf_token %}
+      <div class="space-y-6">
+        <!-- Username Input Field -->
+        <div class="relative">
+          <label class="block text-sm font-medium text-gray-700">Username*</label>
+          <input type="text" name="username" placeholder="Masukkan username Anda" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+        </div>
+
+        <!-- Password Input Field -->
+        <div class="relative">
+          <label class="block text-sm font-medium text-gray-700">Password*</label>
+          <div class="relative">
+            <input type="password" name="password" placeholder="Masukkan password" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+            <span class="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10 4c-4 0-7 3.57-7 4.5S6 13 10 13s7-3.57 7-4.5S14 4 10 4zm0 2c.96 0 1.75.79 1.75 1.75S10.96 9.5 10 9.5 8.25 8.71 8.25 7.75 9.04 6 10 6zm0 7c-2.5 0-4.63-1.72-4.75-2.25C5.37 10.28 7.5 8.5 10 8.5s4.63 1.72 4.75 2.25c-.12.53-2.25 2.25-4.75 2.25z"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <!-- Position Change: "Belum punya akun?" moved here above the submit button -->
+        <p class="mt-4 text-center text-gray-600">
+          Belum punya akun? <a href="{% url 'main:register' %}" class="text-indigo-600 hover:underline">Daftar Sekarang</a>
+        </p>
+
+        <div>
+          <input class="w-full bg-black text-white py-2 px-4 rounded cursor-pointer hover:bg-gray-800 transition duration-300 ease-in-out" type="submit" value="Masuk" />
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
-
 {% endblock content %}

@@ -1,5 +1,4 @@
-{% extends 'base.html' %} 
-
+{% extends 'base.html' %}
 {% block content %}
 {% include 'navbar.html' %}
 
@@ -9,7 +8,7 @@
             <button class="close-btn text-gray-500 text-2xl">&times;</button>
         </div>
 
-        <h1 class="text-2xl font-bold mb-6 text-center text-black">Tambah Produk Baru</h1>
+        <h1 class="text-2xl font-bold mb-6 text-center text-black">Edit Produk</h1>
 
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
@@ -17,31 +16,31 @@
                 <!-- Nama Produk -->
                 <div class="relative">
                     <label class="block text-sm font-medium text-gray-700">Nama Produk*</label>
-                    <input type="text" name="name" placeholder="Masukkan nama produk" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    <input type="text" name="name" value="{{ form.name.value }}" placeholder="Masukkan nama produk" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
                 </div>
 
                 <!-- Harga Produk -->
                 <div class="relative">
                     <label class="block text-sm font-medium text-gray-700">Harga Produk (Rp)*</label>
-                    <input type="number" name="price" placeholder="Masukkan harga produk" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    <input type="number" name="price" value="{{ form.price.value }}" placeholder="Masukkan harga produk" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
                 </div>
 
                 <!-- Deskripsi Produk -->
                 <div class="relative">
                     <label class="block text-sm font-medium text-gray-700">Deskripsi Produk*</label>
-                    <textarea name="description" placeholder="Masukkan deskripsi produk" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
+                    <textarea name="description" placeholder="Masukkan deskripsi produk" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" required>{{ form.description.value }}</textarea>
                 </div>
 
                 <!-- Jumlah Produk -->
                 <div class="relative">
                     <label class="block text-sm font-medium text-gray-700">Jumlah Produk*</label>
-                    <input type="number" name="quantity" placeholder="Masukkan jumlah produk" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    <input type="number" name="quantity" value="{{ form.quantity.value }}" placeholder="Masukkan jumlah produk" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
                 </div>
 
                 <!-- Diskon Produk -->
                 <div class="relative">
                     <label class="block text-sm font-medium text-gray-700">Diskon (%)</label>
-                    <input type="number" name="discount" placeholder="Masukkan diskon (jika ada)" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <input type="number" name="discount" value="{{ form.discount.value }}" placeholder="Masukkan diskon (jika ada)" class="mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 </div>
 
                 <!-- Gambar Produk -->
@@ -52,7 +51,7 @@
 
                 <!-- Tombol Submit -->
                 <div class="flex justify-center mt-4">
-                    <input type="submit" value="Tambah Produk" class="bg-black text-white py-2 px-4 rounded cursor-pointer hover:bg-gray-800 transition duration-300 ease-in-out">
+                    <input type="submit" value="Simpan Perubahan" class="bg-black text-white py-2 px-4 rounded cursor-pointer hover:bg-gray-800 transition duration-300 ease-in-out">
                 </div>
             </div>
         </form>

@@ -1,0 +1,41 @@
+<div class="max-w-sm bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 m-4">
+    <div class="relative">
+        <!-- Product Image -->
+        <img src="{{ product.image.url|default:'static/image/emoji-oke.png' }}" alt="{{ product.name }}" class="w-full h-64 object-cover">
+        
+        <!-- Quick View Button -->
+        <button class="absolute bottom-4 right-4 bg-gray-500 bg-opacity-75 text-white px-4 py-2 rounded-lg text-sm flex items-center hover:bg-opacity-100 transition duration-300 ease-in-out">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10 4c-4 0-7 3.57-7 4.5S6 13 10 13s7-3.57 7-4.5S14 4 10 4zm0 2c.96 0 1.75.79 1.75 1.75S10.96 9.5 10 9.5 8.25 8.71 8.25 7.75 9.04 6 10 6zm0 7c-2.5 0-4.63-1.72-4.75-2.25C5.37 10.28 7.5 8.5 10 8.5s4.63 1.72 4.75 2.25c-.12.53-2.25 2.25-4.75 2.25z"/>
+            </svg>
+            Quick View
+        </button>
+    </div>
+    
+    <!-- Product Details -->
+    <div class="p-4">
+        <h3 class="text-gray-900 font-bold text-lg mb-2">{{ product.name }}</h3>
+        <p class="text-gray-600 text-sm mb-2">{{ product.description }}</p>
+
+        <!-- Product Sizes or Quantity -->
+        <div class="flex items-center space-x-2 mb-2 text-gray-600 text-sm">
+            {% if product.quantity %}
+            <span>Stock: {{ product.quantity }}</span>
+            {% else %}
+            <span>Size: S M L XL XXL</span>
+            {% endif %}
+        </div>
+        
+        <!-- Price and Discount -->
+        <div class="flex items-center justify-between">
+            <span class="text-gray-900 font-semibold">
+                Rp {{ product.price|floatformat:0 }}
+            </span>
+            {% if product.discount > 0 %}
+            <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+                {{ product.discount|floatformat:0 }}% OFF
+            </span>
+            {% endif %}
+        </div>
+    </div>
+</div>

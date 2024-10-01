@@ -1,0 +1,57 @@
+<nav class="bg-black text-white p-4">
+  <div class="container mx-auto flex justify-between items-center">
+      <!-- Logo or Brand Name -->
+      <div class="text-2xl font-bold">
+          Gallery Sport
+      </div>
+
+      <!-- Burger Menu for Mobile -->
+      <div class="block lg:hidden">
+          <button id="burger-menu" class="text-white focus:outline-none">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+          </button>
+      </div>
+
+      <!-- Navbar Links -->
+      <div id="nav-links" class="hidden lg:flex space-x-6">
+          <a href="{% url 'main:show_main' %}" class="hover:underline">Produk</a>
+          <a href="{% url 'main:create_product_entry' %}" class="hover:underline">Tambah Produk</a>
+          <span class="hidden lg:inline">Welcome, {{ request.user.username }}</span>
+          <a href="{% url 'main:logout' %}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300">Logout</a>
+      </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="lg:hidden hidden bg-gray-800 text-white p-4 space-y-4">
+      <a href="{% url 'main:show_main' %}" class="block hover:underline">Produk</a>
+      <a href="{% url 'main:create_product_entry' %}" class="block hover:underline">Tambah Produk</a>
+      <span>Welcome, {{ request.user.username }}</span>
+      <a href="{% url 'main:logout' %}" class="block bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300">Logout</a>
+  </div>
+</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gallery Sport{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> <!-- Link your CSS file -->
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+
+    <!-- Place your JavaScript code here -->
+    <script>
+        const burgerMenu = document.getElementById('burger-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        burgerMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
