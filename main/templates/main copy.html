@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="container mx-auto py-8">
+    <h1 class="text-3xl font-bold text-center mb-8">                       </h1>
+
+    <!-- Display Products or Empty State -->
+    {% if not products %}
+    <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+        <img src="{% static 'image/emoji-oke.png' %}" alt="No Products" class="w-120 h-120 mb-4"/>
+        <p class="text-center text-gray-600 mt-4">Belum ada data produk pada e-commerce.</p>
+    </div>
+    {% else %}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for product in products %}
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <div class="p-4">
+                <!-- Directly showing the default image -->
+                <img src="{% static 'image/emoji-oke.png' %}" alt="{{ product.name }}" class="w-full h-48 object-cover mb-4">
+                
+                <h2 class="text-xl font-bold">{{ product.name }}</h2>
+                <p class="text-gray-700">Rp {{ product.price }}</p>
+                <p class="text-gray-600">{{ product.description }}</p>
+                <p class="text-gray-600">Stok: {{ product.quantity }}</p>
+                <p class="text-gray-600">Diskon: {{ product.discount }}%</p>
+                <div class="mt-4 flex justify-between">
+                    <a href="{% url 'main:edit_product' product.pk %}" class="bg-yellow-500 text-white py-1 px-3 rounded hover:bg-yellow-600 transition duration-200">Edit</a>
+                    <a href="{% url 'main:delete_product' product.pk %}" class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600 transition duration-200">Hapus</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="mt-6 text-center">
+        <a href="{% url 'main:create_product_entry' %}" class="bg-indigo-600 text-white py-2 px-4 rounded-lg transition duration-300 hover:bg-indigo-700">Tambah Produk Baru</a>
+    </div>
+</div>
+{% endblock %}
