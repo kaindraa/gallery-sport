@@ -73,28 +73,40 @@ def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
+            print("Form valid")
             form.save()
             messages.success(request, 'Your account has been successfully created!')
             return redirect('main:login')
-    context = {'form':form}
+        else:
+            print("Form ga valid")
+            print(form.errors)  # Debugging: print form errors to the console
+    
+    context = {'form': form}
     return render(request, 'register.html', context)
 
 
+
 def login_user(request):
-   if request.method == 'POST':
-      form = AuthenticationForm(data=request.POST)
+    if request.method == 'POST':
+        print("Form submission received:", request.POST)  # Print form data
+        form = AuthenticationForm(data=request.POST)
 
-      if form.is_valid():
-        user = form.get_user()
-        login(request, user)
-        response = HttpResponseRedirect(reverse("main:show_main"))
-        response.set_cookie('last_login', str(datetime.datetime.now()))
-        return response
+        if form.is_valid():
+            print("Form is valid")
+            user = form.get_user()
+            print("Authenticated user:", user)
+            login(request, user)
+            response = HttpResponseRedirect(reverse("main:show_main"))
+            response.set_cookie('last_login', str(datetime.datetime.now()))
+            return response
+        else:
+            print("Form is invalid")
+            messages.error(request, "Invalid username or password. Please try again.")
+    else:
+        form = AuthenticationForm()
+    context = {'form': form}
+    return render(request, 'login.html', context)
 
-   else:
-      form = AuthenticationForm(request)
-   context = {'form': form}
-   return render(request, 'login.html', context)
 
 def logout_user(request):
     logout(request)
