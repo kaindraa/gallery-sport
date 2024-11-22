@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-q(el)41pw*$-yz$)ysi55m^4eoxy@uefn1x$!a3b4q7!+u@0v2
 PRODUCTION = os.getenv("PRODUCTION", False)
 DEBUG = not PRODUCTION
 #add links
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "kaindra-rizq-gallerysport.pbp.cs.ui.ac.id"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "kaindra-rizq-gallerysport.pbp.cs.ui.ac.id", "10.0.2.2"]
 
 
 
@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main'
+    'main',
+    'authentication',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -53,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'gallery_sport.urls'
@@ -134,3 +137,10 @@ else:
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost","http://127.0.0.1","http://https://kaindra-rizq-gallerysport.pbp.cs.ui.ac.id/", "https://https://kaindra-rizq-gallerysport.pbp.cs.ui.ac.id/"]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
